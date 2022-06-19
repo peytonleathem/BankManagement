@@ -4,8 +4,13 @@ namespace Classes;
 
 public class BankAccount
 {
+    //Number id of bank account
     public string Number { get;}
+    //Owner name
     public string Owner {get; set;}
+    //Transaction history
+    private List<Transaction> allTransactions = new List<Transaction>();
+    //Calculate balance by traversing transaction history
     public decimal Balance
     {
         get
@@ -20,7 +25,20 @@ public class BankAccount
         }
     }
 
-    private static int accountNumberSeed = 1234567890;
+    private static int accountNumberSeed = 1;
+
+    //Virtual method for implementing interest- Used virtual so that I can make other accounts with different rates
+    //Making this app is making me realize I don't know enough about banks and credit cards
+    public virtual void CalculateMonthlyInterest()
+    {
+        if (Balance > 500m)
+        {
+            decimal interest = Balance * 0.05m;
+            MakeDeposit(interest, DateTime.Now, "Apply monthly interest");
+        }
+    }
+
+    //A method to make deposits-throws exceptions for negative deposits
     public void MakeDeposit(decimal amount, DateTime date, string note)
     {
         if (amount <= 0)
@@ -31,6 +49,7 @@ public class BankAccount
         allTransactions.Add(deposit);
     }
 
+    //A method for making a withdrawal- throws an error for negative withdrawals and insufficient funds 
     public void MakeWithdrawal(decimal amount, DateTime date, string note)
     {
     if (amount <= 0)
@@ -45,7 +64,8 @@ public class BankAccount
         allTransactions.Add(withdrawal);
     }
 
-    public void GetAccountHistory()
+    //An account history method- prints the account history and returns it as a formatted string to be operated on
+    public List<string> GetAccountHistory()
     {
         List<string> history = new List<string> {};
 
@@ -60,8 +80,11 @@ public class BankAccount
         }
         
         history.ForEach(h => Console.WriteLine(h));
+
+        return history;
     }
 
+    //Constructor for creation of a basic bank account
     public BankAccount(String name, decimal initialBalance)
     {
         Owner = name;
@@ -70,8 +93,6 @@ public class BankAccount
 
         MakeDeposit(initialBalance, DateTime.Now, "Initial balance");
     }
-
-    private List<Transaction> allTransactions = new List<Transaction>();
 }
 
 
