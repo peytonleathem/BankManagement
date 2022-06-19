@@ -2,8 +2,14 @@ namespace Classes
 {
     public class InterestEarningAccount: BankAccount
     {
+        public override void CalculateMonthlyInterest()
+        {
+            
+        }
+
         public InterestEarningAccount(string name, decimal initialBalance) : base(name, initialBalance)
         {
+            
             
         }
     }

@@ -10,6 +10,8 @@ public class BankAccount
     public string Owner {get; set;}
     //Transaction history
     private List<Transaction> allTransactions = new List<Transaction>();
+    //Bank payment and charge history
+    private List<Transaction> bankTransactions = new List<Transaction>();
     //Calculate balance by traversing transaction history
     public decimal Balance
     {
@@ -62,6 +64,25 @@ public class BankAccount
         }
         var withdrawal = new Transaction(-amount, date, note);
         allTransactions.Add(withdrawal);
+    }
+    //Make a transaction with the bank
+    public void BankPayment(decimal amount, DateTime date, string note)
+    {
+    if (Balance - amount < 0)
+    {
+        throw new InvalidOperationException("Insufficient funds to make a payment to the bank.");
+    }
+    var bankPay = new Transaction(-amount, date, note);
+    bankTransactions.Add(bankPay);
+    }
+
+    //Adding in a monthly service fee
+    //I gave it its own list so that I could filter out bank charges and payments rather than user-defined charges
+    public virtual void MonthlyServiceFee()
+    {
+        decimal fee = 12m;
+
+        BankPayment(fee, DateTime.Now, "MOnthly Service Charge");
     }
 
     //An account history method- prints the account history and returns it as a formatted string to be operated on
