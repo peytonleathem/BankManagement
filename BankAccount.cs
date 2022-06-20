@@ -7,7 +7,7 @@ public class BankAccount
     //Number id of bank account
     public string Number { get;}
     //Owner name
-    public string Owner {get; set;}
+    public User Owner {get; set;}
     //Transaction history
     private List<Transaction> allTransactions = new List<Transaction>();
     //Bank payment and charge history
@@ -106,9 +106,9 @@ public class BankAccount
     }
 
     //Constructor for creation of a basic bank account
-    public BankAccount(String name, decimal initialBalance)
+    public BankAccount(User owner, decimal initialBalance)
     {
-        Owner = name;
+        Owner = owner;
         Number = accountNumberSeed.ToString();
         accountNumberSeed++;
 

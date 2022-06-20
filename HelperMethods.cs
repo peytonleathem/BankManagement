@@ -1,6 +1,6 @@
 namespace Classes
 {
-        class HelperMethods
+        static class HelperMethods
     {
         
     }
