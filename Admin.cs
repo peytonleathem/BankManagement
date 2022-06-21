@@ -1,20 +1,17 @@
 namespace Classes
 {
-    public class InterestEarningAccount: BankAccount
+    class Admin
     {
-        public override void CalculateMonthlyInterest()
-        {
-            
-        }
+        private string Name { get; }
+        private string userName { get; }
+        private string password { get; set; }
 
-        public InterestEarningAccount(User name, decimal initialBalance) : base(name, initialBalance)
-        {
-            
-            
-        }
+        public bool isLoggedIn { get; set;}
+
+        //Methods for the Admin specifically
+
     }
 }
-
 
 /*
                                              

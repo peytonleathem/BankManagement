@@ -6,6 +6,8 @@ namespace Classes
         public string ID {get;}
         private static int id_Seed = 1;
         public string Name {get;}
+        //Currently since this isn't connected to a database or anything, I'm just setting a simple variable to track logins
+        private bool loggedIn = false;
         List<BankAccount> relatedAccounts = new List<BankAccount>();
         //May add some more sophisticated credit score methods later, depends on time
         public int CreditScore {get;}

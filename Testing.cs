@@ -1,5 +1,6 @@
 namespace Classes
 {
+//A class to generate random accounts to populate and test my bank program
     class Testing
     {
 
